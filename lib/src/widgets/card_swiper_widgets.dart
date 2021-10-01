@@ -12,34 +12,42 @@ class CardSwiper extends StatelessWidget {
 
   CardSwiper({ @required this.movies});
 
-  @override
+   @override
   Widget build(BuildContext context) {
-
+    
     final _screenSize = MediaQuery.of(context).size;
 
     return Container(
-    padding: EdgeInsets.only(top: 10.0),
-    
-      child: new Swiper(
+       padding: EdgeInsets.only(top: 10.0),
+       child: Swiper(
+          layout: SwiperLayout.STACK,
+          itemWidth: _screenSize.width * 0.7,
+          itemHeight: _screenSize.height * 0.5,
           itemBuilder: (BuildContext context, int index){
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(20.0) ,
-              child: FadeInImage(
-                placeholder: AssetImage("assets/img/no-image.jpg"),
-                fit: BoxFit.cover,
-                image: NetworkImage(movies[index].getPosterImg()
+
+            movies[index].uniqueId = '${ movies[index].id }-tarjeta';
+
+            return Hero(
+              tag: movies[index].uniqueId,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: GestureDetector(
+                  onTap: ()=> Navigator.pushNamed(context, 'detalle', arguments: movies[index]),
+                  child: FadeInImage(
+                    image: NetworkImage( movies[index].getPosterImg()  ),
+                    placeholder: AssetImage('assets/img/no-image.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                 )
-              ) 
+              ),
             );
-             
+            
           },
           itemCount: movies.length,
-          pagination: new SwiperPagination(),
-          control: new SwiperControl(),
-          itemWidth: _screenSize.width * 0.07,
-          itemHeight: _screenSize.height * 0.5,
-          layout: SwiperLayout.STACK,
-        ),
+          // pagination: new SwiperPagination(),
+          // control: new SwiperControl(),
+      ),
     );
-  }
+
+}
 }
