@@ -12,7 +12,7 @@ class MoviesProvider {
 int _popularesPage = 0;
   bool _cargando     = false;
 
-  List<Movie> _populares = new List();
+  List<Movie> _populares = [];
 
   final _popularesStreamController = StreamController<List<Movie>>.broadcast();
 

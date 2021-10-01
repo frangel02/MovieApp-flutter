@@ -35,7 +35,7 @@ final Function siguientePagina;
 
 
     return Container(
-      height: _screenSize.height * 0.2,
+      height: _screenSize.height * 0.3,
       child: PageView.builder(
         pageSnapping: false,
         controller: _pageController,
@@ -97,11 +97,11 @@ List<Widget> _tarjetas(BuildContext context) {
                   image: NetworkImage( movie.getPosterImg() ),
                   placeholder: AssetImage('assets/img/no-image.jpg'),
                   fit: BoxFit.cover,
-                  height: 149.0,
+                  height: 225.0,
                 ),
               ),
             ),
-            SizedBox(height: 1.0),
+            SizedBox(height: 6.0),
             Text(
               movie.title,
               overflow: TextOverflow.ellipsis,
